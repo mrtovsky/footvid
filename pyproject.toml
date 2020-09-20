@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "footvid"
+version = "0.1.0"
+description = "Differentiate football match TV broadcast frames between actual match scenes and cutscenes"
+authors = ["mrtovsky <mrtovsky@protonmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+
+[tool.poetry.dev-dependencies]
+pytest = "^4.6"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
