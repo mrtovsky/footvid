@@ -37,7 +37,8 @@ class ResNet(nn.Module):
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         x = self.resnet50_conv(x)
-        x.register_hook(self.set_gradients)
+        if x.requires_grad:
+            x.register_hook(self.set_gradients)
         x = self.avgpool(x)
         x = torch.flatten(x, 1)
         x = self.fc(x)
