@@ -4,7 +4,7 @@ import copy
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
-from typing import Callable, Mapping, Optional, Union, TYPE_CHECKING
+from typing import Callable, Mapping, List, Optional, Union, TYPE_CHECKING
 
 import numpy as np
 import torch
@@ -57,25 +57,27 @@ class TrainTestEpochResults:
 
 
 def freeze_layers(
-    model: nn.Module, last_layer: Union[int, str], inplace: bool = True
+    model: nn.Module, last_layer: str, inplace: bool = True
 ) -> Optional[nn.Module]:
+    if not isinstance(last_layer, str):
+        raise TypeError("Incorrect `last_layer` type. String type expected.")
+
     if not inplace:
         model = copy.deepcopy(model)
 
-    if isinstance(last_layer, int):
-        for child in list(model.children())[: last_layer + 1]:
-            for param in child.parameters():
-                param.requires_grad = False
-    elif isinstance(last_layer, str):
+    last_layer = last_layer.split(".")
+
+    def _freeze(model: nn.Module, last_layer: List[str]) -> None:
+        if not last_layer:
+            return
         for name, child in model.named_children():
+            if name == last_layer[0]:
+                _freeze(child, last_layer[1:])
+                break
             for param in child.parameters():
                 param.requires_grad = False
-            if name == last_layer:
-                break
-    else:
-        raise TypeError(
-            "Incorrect `last_layer` type. Integer or string type expected."
-        )
+
+    _freeze(model, last_layer)
 
     return model if not inplace else None
 
