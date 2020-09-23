@@ -32,16 +32,72 @@ below using the source package function:
     ├── docs
     │   └── images         <- Folder for storing images used across the package documentation.
     │
+    ├── logs               <- Tensorboard model training logs.
+    │
     ├── models             <- Trained and serialized models, model predictions, or model summaries.
     │
     ├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering) and
-    │                         a short `-` delimited description, e.g. `0.0-initial-data-exploration`.
+    │                         a short `-` delimited description, e.g. `00-initial-data-exploration`.
     │
+    ├── references         <- Data dictionaries, manuals, and all other explanatory materials.
+    |
     ├── poetry.lock        <- File to resolve and install all dependencies listed in the
     │                         pyproject.toml file.
     ├── pyproject.toml     <- File orchestrating the project and its dependencies.
     │
     ├── footvid            <- Source code for use in this project.
+
+### Notebooks
+
+The project is designed to separate the particular modeling steps into
+notebooks. Notebook list:
+
+- [00-images-integrity](https://github.com/mrtovsky/footvid/blob/master/notebooks/00-images-integrity.ipynb)
+  focuses on getting familiarity with data, examines images size, resolution
+  and relation of positive to negative frames. It also generates a presentation
+  of an example input.
+- [01-train-valid-split](https://github.com/mrtovsky/footvid/blob/master/notebooks/01-train-valid-split.ipynb)
+  is dedicated to dividing the data set into an appropriately represented
+  training and validation set to avoid consequences of _sampling bias_ like
+  shown in the widely known _The Literary Digest_
+  [Presidential poll](https://en.wikipedia.org/wiki/The_Literary_Digest#Presidential_poll).
+  Implementation of an algorithm that works in a quadratic worst-case time
+  complexity and finds best splits in a semi-greedy manner is also provided in
+  this notebook.
+- [10-resnet](https://github.com/mrtovsky/footvid/blob/master/notebooks/10-resnet.ipynb)
+  provides [ResNet50](https://arxiv.org/abs/1512.03385) experiments setup.
+  Three methodologies of fine-tuning were tested. First, optimizing only the
+  weights of the last, fully-connected, layer. Second, additionally unfreezing
+  3rd and 4th ResNet layers. The last one, fine-tuning the whole neural net.
+
+## Installation
+
+### Poetry
+
+The recommended way of installing the project is via
+[Poetry](https://python-poetry.org/docs/#:~:text=Linux%20and%20OSX.-,Installation,recommended%20way%20of%20installing%20poetry%20.)
+package. If Poetry is not installed already, follow the installation
+instructions at the provided link. When this is finished, clone the repository
+to disk by running:
+
+```bash
+git clone https://github.com/mrtovsky/footvid.git
+```
+
+Enter the cloned directory, resolve and install dependencies using:
+
+```bash
+cd footvid/
+poetry install
+```
+
+### pip
+
+It is also possible to install the package in a traditional way, simply run:
+
+```bash
+pip install git+https://github.com/mrtovsky/footvid.git
+```
 
 ## Related Publications
 
