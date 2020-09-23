@@ -208,7 +208,7 @@ def run_experiment(
                 checkpoint,
                 Path(artifacts_dir).joinpath(
                     "checkpoint.{}.pth".format(
-                        now.strftime("%d-%m-%Y%.%H_%M_%S")
+                        now.strftime("%d-%m-%Y.%H_%M_%S")
                     )
                 ),
             )
