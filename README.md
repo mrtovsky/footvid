@@ -109,7 +109,7 @@ printf "REPOSITORY_PATH=\"$(pwd)\"" >> .env
 The recommended way of installing the full project is via
 [Poetry](https://python-poetry.org/docs/#:~:text=Linux%20and%20OSX.-,Installation,recommended%20way%20of%20installing%20poetry%20.)
 package. If Poetry is not installed already, follow the installation
-instructions at the provided link. Then, assuming you have alreadt entered the
+instructions at the provided link. Then, assuming you have already entered the
 **footvid** directory, resolve and install dependencies using:
 
 ```bash
