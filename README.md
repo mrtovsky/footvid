@@ -132,7 +132,7 @@ pip install -e .
 
 This will install the package in an editable mode. If you installed it inside
 of the virtual environment, then attaching it to the Jupyter Notebook kernel is
-the same as with the **Poetry** but the command is stripped from first two
+the same as with the **Poetry** but the command is stripped from the first two
 elements (remember that the virtualenv needs to be activated beforehand):
 
 ```bash
@@ -162,6 +162,41 @@ More detailed training results can be displayed by opening the **tensorboard**:
 ```bash
 tensorboard --logdir ./logs/ --host localhost
 ```
+
+Judging by the prism of plain values, intuitively, best results brings the
+model that has fine-tuned layers responsible for learning more intricate,
+dataset-specific features and a classifier on top of that. Training the
+classification layer only may result in the worse results due to the fact that
+more complex features obtained from convolutional layers are not well tailored
+to the needs of a given problem. On the other hand, entire network fine-tuning,
+even the layers responsible for recognizing more general, universal shapes
+makes the model vulnerable to learning the noise present in smaller datasets.
+Training only the top layers of CNNs seems to find the perfect balance between
+the above-mentioned risks.
+
+It should be remembered that this inference is based on bare results on a very
+small validation set, where there is a high risk of no statistical significance
+between the differences in the performance of models. If we want to actually
+check whether one estimator performs better than the other, we should use the
+appropriate test, e.g.
+[combined 5x2 cv F-test](https://sci2s.ugr.es/keel/pdf/specific/articulo/alp99.pdf).
+However, it is not within our interest in this project, so having to decide on
+one of the models mentioned, we will take the one that had the best results as
+our new **champion** and use it for preparing test predictions.
+
+## What's Next
+
+Some ideas on how to continue the research work on this project:
+
+- Training shallow classification model using features extracted with
+  **Histogram of Oriented Gradients** (HOG) method.
+- Using the already developed model to **active learning** - detect mislabeled
+  frames.
+- Clustering to group frames from the same match despite having different
+  `match_hash` assigned to them.
+- Redefining the classification problem into **object detection** and creating
+  match frame detection heuristics guided by the presence of "football pitch
+  landmarks".
 
 ## Related Publications
 
