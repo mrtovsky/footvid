@@ -78,6 +78,30 @@ notebooks. Notebook list:
 - [11-model-selection](https://github.com/mrtovsky/footvid/blob/master/notebooks/11-model-selection.ipynb)
   shows method of selecting the best model with use of the **TensorBoard**
   training logs and prepares test dataset predictions.
+- [12-gradcam](https://github.com/mrtovsky/footvid/blob/master/notebooks/12-gradcam.ipynb)
+  renders
+  **[Gradient-weighted Class Activation Mappings](https://arxiv.org/pdf/1610.02391.pdf)**
+  of the **Champion** model for 11 randomly chosen images from the validation
+  set. It can be observed that the model is trying to extract a group of
+  players located on the football pitch, which seems to be a fairly good
+  heuristic for assessing whether the image is a match video frame or not.
+  Whenever there is a camera close-up or something unrelated with the football
+  match the model easily detects that it is not a match frame, which can be
+  seen by the lack of "warm" areas on the heatmap. Examples below.
+
+#### Grad-CAMs
+
+True label: **positive**, prediction: **0.95**
+
+<p align="center">
+    <img src="docs/images/gradcams/example-00.png" alt="gradcam-positive" class="center" width="750">
+</p>
+
+True label: **negative**, prediction: **0.13**
+
+<p align="center">
+    <img src="docs/images/gradcams/example-10.png" alt="gradcam-negative" class="center" width="750">
+</p>
 
 ## Installation
 
