@@ -74,6 +74,9 @@ notebooks. Notebook list:
   function. The models were trained with the use of a safe SGD optimizer,
   avoiding the risk of unstable solutions obtained with
   [adaptive optimizers](https://arxiv.org/pdf/1705.08292.pdf).
+- [11-model-selection](https://github.com/mrtovsky/footvid/blob/master/notebooks/11-model-selection.ipynb)
+  shows method of selecting the best model with use of the **TensorBoard**
+  training logs and prepares test dataset predictions.
 
 ## Installation
 
