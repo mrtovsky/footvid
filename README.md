@@ -167,16 +167,6 @@ elements (remember that the virtualenv needs to be activated beforehand):
 python -m ipykernel install --name=footvid-venv
 ```
 
-## Data
-
-All files that were too big to be attached directly to the repository are
-stored under the following
-[Google Drive storage](https://drive.google.com/drive/folders/1EXcVoV8UPWVx2-2UQfnSZOFrw6Lk360K?usp=sharing).
-Names and topology of files is matching the repository convention so whenever
-given data is necessary (notebooks are informing about the required file
-structure) just download and insert the files to the corresponding place in
-your local repository.
-
 ## Results
 
 | Method                              | Accuracy score (train / validation) | Average precision (train / validation) |
